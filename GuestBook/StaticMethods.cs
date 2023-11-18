@@ -6,8 +6,10 @@ namespace GuestBook
     {
         public static List<string> guests = new();
         public static string hostName, numberOfGuests, guestName = "";
+        public static int totalGuests;
 
         public static string GetName()
+
         {
             Write("And what is the name for the party? ");
             hostName = ReadLine();
@@ -19,7 +21,7 @@ namespace GuestBook
         {
             Write("And for how many? ");
             numberOfGuests = ReadLine();
-
+            totalGuests += Convert.ToInt32(numberOfGuests);
             return Convert.ToInt32(numberOfGuests);
         }
 
@@ -40,6 +42,29 @@ namespace GuestBook
             {
                 WriteLine(guests);
             }
+        }
+
+        public static void PromptUserForAdditionalGuest()
+        {
+            Write("Add additional guest list? ");
+            string text = ReadLine();
+            if (text == "y")
+            {
+                GetName();
+                GetGuests();
+                UpdateGuestBook();
+                PromptUserForAdditionalGuest();
+            }
+            else
+            {
+                PrintTotalNumberOfGuests();
+            }
+        }
+
+        private static void PrintTotalNumberOfGuests()
+        {
+            PrintGuestBook();
+            WriteLine($"Total number of guests: {totalGuests}.");
         }
     }
 }

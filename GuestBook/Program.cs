@@ -8,4 +8,4 @@
 StaticMethods.GetName();
 StaticMethods.GetGuests();
 StaticMethods.UpdateGuestBook();
-StaticMethods.PrintGuestBook();
+StaticMethods.PromptUserForAdditionalGuest();
